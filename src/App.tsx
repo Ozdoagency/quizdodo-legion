@@ -13,6 +13,7 @@ import { useTimeBasedTheme } from './hooks/useTimeBasedTheme';
 import LoadingAnimation from './components/LoadingAnimation';
 import FeatureCard from './components/FeatureCard';
 import './styles/index.css';
+import { useDeviceLanguage } from '@/hooks/useDeviceLanguage';
 
 function getActualDateString(language: 'ru' | 'uk' | 'en') {
   const now = new Date();
@@ -48,6 +49,7 @@ function getActualDateString(language: 'ru' | 'uk' | 'en') {
 }
 
 export default function App() {
+  const deviceLanguage = useDeviceLanguage();
   const [isQuizStarted, setIsQuizStarted] = useState(false);
   const [animate, setAnimate] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -114,7 +116,7 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const { language = 'ru' } = useLanguage();
+  const { language = deviceLanguage } = useLanguage();
   const { theme } = useTheme();
   const t = translations[language];
 

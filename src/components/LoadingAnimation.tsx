@@ -1,10 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { useDeviceLanguage } from '@/hooks/useDeviceLanguage';
+
+const loadingTexts = {
+  ru: 'Готовим вашу идеальный подборку...',
+  uk: 'Готуємо вашу ідеальну підбірку...',
+  en: 'Preparing your perfect selection...'
+};
 
 export default function LoadingAnimation() {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const deviceLanguage = useDeviceLanguage();
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -50,7 +58,7 @@ export default function LoadingAnimation() {
         {/* Текст в отдельном контейнере */}
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-foreground mb-2">Legion Real Estate</h2>
-          <p className="text-sm text-muted-foreground">Готовим вашу идеальный подборку...</p>
+          <p className="text-sm text-muted-foreground">{loadingTexts[deviceLanguage]}</p>
         </div>
 
         {/* Прогресс бар с градиентом */}

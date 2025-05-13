@@ -6,7 +6,8 @@ import { useLanguage } from '../context/LanguageContext';
 
 const languages = [
   { code: 'uk', name: 'Українська', flag: '🇺🇦', style: { color: 'hsl(217.2deg 73.07% 56.5%)' } },
-  { code: 'ru', name: 'Русский', flag: '🇷🇺', style: { color: 'hsl(217.2deg 73.07% 56.5%)' } }
+  { code: 'ru', name: 'Русский', flag: '🇷🇺', style: { color: 'hsl(217.2deg 73.07% 56.5%)' } },
+  { code: 'en', name: 'English', flag: '🇬🇧', style: { color: 'hsl(217.2deg 73.07% 56.5%)' } }
 ];
 
 export function LanguageSelector() {
@@ -32,7 +33,7 @@ export function LanguageSelector() {
             <button
               key={lang.code}
               onClick={() => {
-                setLanguage(lang.code as 'uk' | 'ru');
+                setLanguage(lang.code as 'uk' | 'ru' | 'en');
                 setIsOpen(false);
               }}
               className={`w-full px-4 py-2 text-left flex items-center gap-2 hover:bg-gray-50 transition-colors ${

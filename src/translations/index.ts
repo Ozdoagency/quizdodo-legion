@@ -73,7 +73,7 @@ export const translations = {
         dontWantToWait: "Не хочете чекати?",
         getSelectionNow: "Отримайте підбірку одразу на WhatsApp, натиснувши на кнопку нижче",
         restart: "Отримати підбірку в WhatsApp",
-        link: "https://api.whatsapp.com/send/?phone=62895001976051&text=%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%20%2B%20%D1%84%D0%B8%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%D0%B2%D1%8B%D0%B9%20%D0%BF%D0%BB%D0%B0%D0%BD"
+        link: "https://api.whatsapp.com/send/?phone=62895001976051&text=Отримати%20каталог%20%2B%20фінансовий%20план"
       },
       phoneInput: {
         info: "Введіть номер телефону, і ми зв'яжемося з вами в обраному месенджері"
@@ -104,17 +104,17 @@ export const translations = {
       madeIn: "made in",
     },
     hero: {
-      specialOffer: "Math online for grades 1-11",
-      title: "Get a whole week of free trial math lessons!",
-      subtitle: "Answer 3 questions and we will find the best tutor for your child",
-      top10Title: "<b>TOP-10 Selection</b> of verified properties in Bali for vacation and investment from trusted developers",
+      specialOffer: "Real Estate in Bali",
+      title: "Get a selection of the best properties in Bali!",
+      subtitle: "Answer 3 questions and we will select the best property for you",
+      top10Title: "<b>Get a selection</b> of top-5 most profitable <b>Villas in Bali</b> from <b>$135,000</b>",
       top10Cta: "Get selection",
-      description: "We've checked 450+ properties in Bali using 70 criteria and selected the top 10 based on reliability, location and investment attractiveness."
+      description: "<b>Answer 3 questions</b> and get a catalog of ready-made villas with a yield of <b>12-15% per year</b> and value growth of <b>up to +30%</b> on resale"
     },
     features: {
       quickCalculation: {
         title: "Quick Calculation",
-        description: "Get your project estimate in just 2 minutes",
+        description: "Get your project estimate in just 2 minutes of your time",
         benefits: [
           "Accurate cost estimation",
           "Implementation timeline"
@@ -129,20 +129,20 @@ export const translations = {
         ]
       },
       price: {
-        title: "From $139,000",
-        description: "Starting price for apartments"
+        title: "From $100,000",
+        description: "Starting price for Apartments\nand from $135,000 for villas"
       },
       income: {
-        title: "8 - 12%",
-        description: "Return on our properties. 85% occupancy"
+        title: "10 - 14%",
+        description: "Average return on properties\nthat we offer"
       },
       service: {
-        title: "5* Service",
-        description: "Management company in partnership with Mariott and full service"
+        title: "First payment 25%",
+        description: "Interest-free installment plan up to 2 years\nfrom top developers"
       },
       turnkey: {
         title: "Turnkey",
-        description: "Renovation, furniture, appliances, textiles."
+        description: "All properties come with furniture,\nequipment and management company."
       }
     },
     security: "Your data is protected and will not be shared with third parties",
@@ -154,26 +154,26 @@ export const translations = {
       question: "Question",
       of: "of",
       consultant: {
-        name: "Victoria",
-        position: "Your personal manager",
-        description: "I will help you find the best property in Bali based on your preferences and budget!",
+        name: "Alexander",
+        position: "CEO Legion Real Estate",
+        description: "3.5 years of perfect reputation in real estate market. More than 200 successful deals and satisfied clients",
         expand: "Expand",
         collapse: "Collapse"
       },
       tip: "Tip",
       guaranteedBonuses: "Guaranteed Bonuses",
       bonusList: [
-        "Free project audit",
-        "Technical specialist consultation",
-        "10% discount on first order"
+        "Selection of top-5 projects",
+        "Photos and videos of projects",
+        "Payback tables"
       ],
       completion: {
         title: "Thank you for your request!",
         description: "Our manager will contact you shortly",
         dontWantToWait: "Don't want to wait?",
         getSelectionNow: "Get the selection right on WhatsApp by clicking the button below",
-        restart: "Take again",
-        link: "https://www.instagram.com/mathematic.online/"
+        restart: "Get selection on WhatsApp",
+        link: "https://api.whatsapp.com/send/?phone=62895001976051&text=Get%20catalog%20%2B%20financial%20plan"
       },
       phoneInput: {
         info: "Enter your phone number and we'll contact you via chosen messenger"
@@ -273,7 +273,7 @@ export const translations = {
         dontWantToWait: "Не хотите ждать?",
         getSelectionNow: "Получите подборку сразу на WhatsApp, нажав на кнопку ниже",
         restart: "Получить подборку в WhatsApp",
-        link: "https://api.whatsapp.com/send/?phone=62895001976098&text=%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%20%2B%20%D1%84%D0%B8%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%D0%B2%D1%8B%D0%B9%20%D0%BF%D0%BB%D0%B0%D0%BD"
+        link: "https://api.whatsapp.com/send/?phone=62895001976098&text=Получить%20каталог%20%2B%20финансовый%20план"
       },
       phoneInput: {
         info: "Введите номер телефона, и мы свяжемся с вами в выбранном мессенджере"

@@ -154,6 +154,83 @@ export const questions: { [key: string]: Question[] } = {
       description: "Вы получите полную подборку <strong>с фото, описанием, таблицами окупаемости и 3 стратегиями инвecтирoвания</strong>",
       options: ["WhatsApp", "Telegram", "Viber"]
     }
+  ],
+  en: [
+    {
+      id: 1,
+      type: 'single',
+      question: "What is your purpose?",
+      description: "Choose the appropriate option",
+      tip: "This will help us select optimal properties for your goals.",
+      options: [
+        { label: "💰 I want to get rental income", value: "Rental income" },
+        { label: "📈 I want to resell profitably", value: "Resale" },
+        { label: "🏠 I want for living", value: "Living" },
+        { label: "🔄 I want to combine", value: "Combined goals" }
+      ]
+    },
+    {
+      id: 2,
+      type: 'single',
+      question: "When do you plan to buy?",
+      description: "Choose approximate terms",
+      tip: "The purchase timeline will determine which options we select based on property completion dates. Ready properties or under construction with different completion dates.",
+      options: [
+        { label: "⚡ In the near future", value: "In the near future" },
+        { label: "🔜 Within 2-3 months", value: "Within 2-3 months" },
+        { label: "📅 Within six months", value: "Within six months" },
+        { label: "🗓️ Within a year or more", value: "Within a year or more" }
+      ]
+    },
+    {
+      id: 7,
+      type: 'single',
+      question: "What is your approximate budget?",
+      description: "Choose budget range",
+      tip: "The budget determines the choice of area, property class and additional options. The higher the budget, the more options we can offer you.",
+      options: [
+        { label: "💵 $100,000 - $200,000", value: "$100,000 - $200,000" },
+        { label: "💰 $200,000 - $300,000", value: "$200,000 - $300,000" },
+        { label: "💎 $300,000 - $400,000", value: "$300,000 - $400,000" },
+        { label: "👑 $500,000 and more", value: "$500,000 and more" }
+      ]
+    },
+    {
+      id: 9,
+      type: 'image-choice',
+      question: "What type of property interests you?",
+      description: "Choose an option",
+      tip: "The type of property determines the cost, location and investment potential.",
+      options: [
+        { 
+          label: "Apartments", 
+          value: "Apartments",
+          imageUrl: "https://adsquiz.s3.eu-central-1.amazonaws.com/quiz/9BdbeD3jc3/data/zLv8Ed8H4L98fodCyJI5L4HcIZbob3ISWbdNlOlP.png"
+        },
+        { 
+          label: "Villas", 
+          value: "Villas",
+          imageUrl: "https://optim.tildacdn.one/tild6265-6635-4166-a439-303662373534/-/cover/882x1050/center/center/-/format/webp/5317fa3c-f009-4903-8.png.webp"
+        },
+        { 
+          label: "Townhouses", 
+          value: "Townhouses",
+          imageUrl: "https://adsquiz.s3.eu-central-1.amazonaws.com/quiz/9BdbeD3jc3/data/OiQly1qeD3wdFKZyN4fv7h5QAgPq4Gak29S1XK4J.png"
+        },
+        { 
+          label: "Consider all options", 
+          value: "All options",
+          imageUrl: "https://optim.tildacdn.one/tild3266-3737-4866-b434-326535343363/-/cover/724x514/center/center/-/format/webp/2e6adb8a-eb29-48d3-b.png.webp"
+        }
+      ]
+    },
+    {
+      id: 10,
+      type: 'contact',
+      question: "Choose a convenient messenger to receive the selection",
+      description: "You will receive a complete selection <strong>with photos, descriptions, payback tables and 3 investment strategies</strong>",
+      options: ["WhatsApp", "Telegram", "Viber"]
+    }
   ]
 };
 
