@@ -493,7 +493,9 @@ export default function Quiz() {
               aria-label={t.guaranteedBonuses}
             >
               <span className="text-2xl animate-wiggle drop-shadow-[0_0_8px_rgba(252,73,73,0.3)]">🎁</span>
-              <span className="text-sm font-medium">{language === 'uk' ? 'Бонуси' : 'Бонусы'}</span>
+              <span className="text-sm font-medium">
+                {language === 'uk' ? 'Бонуси' : language === 'en' ? 'Bonuses' : 'Бонусы'}
+              </span>
             </button>
 
             <div className="flex items-center gap-2 md:gap-4 ml-auto">

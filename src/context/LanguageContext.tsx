@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useDeviceLanguage } from '@/hooks/useDeviceLanguage';
 
-type Language = 'ru' | 'uk' | 'en';
+type Language = 'uk' | 'ru' | 'en';
 
 interface LanguageContextType {
   language: Language;
@@ -20,8 +20,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const savedLanguage = localStorage.getItem('language') as Language;
     if (savedLanguage) {
       setLanguage(savedLanguage);
+    } else {
+      setLanguage(deviceLanguage);
     }
-  }, []);
+  }, [deviceLanguage]);
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);

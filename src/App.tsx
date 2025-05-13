@@ -50,13 +50,13 @@ function getActualDateString(language: 'ru' | 'uk' | 'en') {
 
 export default function App() {
   const deviceLanguage = useDeviceLanguage();
+  const [isLoading, setIsLoading] = useState(true);
+  const [contentVisible, setContentVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const [isQuizStarted, setIsQuizStarted] = useState(false);
   const [animate, setAnimate] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [contentVisible, setContentVisible] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
   const galleryRef = useRef<HTMLDivElement>(null);
 
   const slides = [
@@ -79,13 +79,11 @@ export default function App() {
   useTimeBasedTheme();
 
   useEffect(() => {
-    // Имитируем загрузку ресурсов
     const timer = setTimeout(() => {
       setIsLoading(false);
-      // Показываем контент с небольшой задержкой для плавности
-      setTimeout(() => setContentVisible(true), 200);
-    }, 2500);
-    
+      setContentVisible(true);
+    }, 2000);
+
     return () => clearTimeout(timer);
   }, []);
 

@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+"use client";
 
-type Language = 'ru' | 'uk' | 'en';
+import { useState, useEffect } from 'react';
 
-export function useDeviceLanguage() {
+type Language = 'uk' | 'ru' | 'en';
+
+export function useDeviceLanguage(): Language {
   const [deviceLanguage, setDeviceLanguage] = useState<Language>('ru');
 
   useEffect(() => {
