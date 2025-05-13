@@ -1,0 +1,13 @@
+@keyframes giftWiggle {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(-5deg); }
+  50% { transform: rotate(0); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0); }
+}
+
+.giftIcon {
+  animation: giftWiggle 2s ease-in-out infinite;
+  display: inline-block;
+  transform-origin: center;
+} 

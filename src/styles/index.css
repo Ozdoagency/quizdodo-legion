@@ -1,0 +1,643 @@
+@tailwind base;
+/* Общие анимации */
+@keyframes shine {
+  0% { background-position: -200% 0; }
+  100% { background-position: 100% 0; }
+}
+
+@keyframes barber-pole {
+  100% { background-position: 20px 0; }
+}
+
+/* Общие стили прогресс-бара */
+.progress-base {
+  position: relative;
+  will-change: background-position;
+  background-size: 20px 20px;
+  background-color: rgba(201, 146, 99, 0.2);
+}
+/* Запрашиваю показать содержимое файла index.css, чтобы подтвердить разницу */
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 350 6% 11%; /* rgb(30 27 27) - темный фон */
+    --foreground: 0 0% 100%; /* белый текст */
+    --card: 348 6% 16%; /* темно-серый для карточек */
+    --card-foreground: 0 0% 100%; /* белый текст на карточках */
+    --popover: 348 6% 16%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 27 45% 59%; /* rgb(201, 146, 99) - коричнево-золотистый */
+    --primary-foreground: 0 0% 100%; /* белый текст на основном цвете */
+    --secondary: 348 6% 20%; /* темно-серый для второстепенных элементов */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 348 6% 20%; /* немного светлее основного фона */
+    --muted-foreground: 27 45% 85%; /* светлый коричневый для второстепенного текста */
+    --accent: 27 45% 40%; /* темный коричневый акцент */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 74% 41%; /* #b91c1c */
+    --destructive-foreground: 0 0% 100%;
+    --border: 348 6% 20%; /* темный цвет для бордеров */
+    --input: 348 6% 20%;
+    --ring: 27 45% 59%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: animate-in 0.3s ease-out;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fade-in-up 0.5s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+/* Bolt.new inspired background */
+
+.bolt-card {
+  @apply relative overflow-hidden rounded-xl border p-6 backdrop-blur-xl;
+  border-color: rgba(201, 146, 99, 0.2);
+  background: hsl(348 6% 16%);
+}
+
+.bolt-glow {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -25%;
+  left: -25%;
+  background: radial-gradient(
+    circle at center,
+    hsl(var(--primary) / 0.15),
+    transparent 50%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+}
+
+.bolt-card:hover .bolt-glow {
+  opacity: 1;
+  animation: none;
+}
+
+/* Button styles */
+.bolt-button {
+  @apply relative overflow-hidden rounded-full bg-primary px-6 py-3 text-primary-foreground transition-all duration-300;
+  background: linear-gradient(
+    90deg,
+    hsl(27 45% 59%), /* rgb(201, 146, 99) */
+    hsl(27 45% 65%) /* светлее */
+  );
+}
+
+.bolt-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shine 2s linear infinite;
+  animation-delay: 2s;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.bolt-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px hsl(27 45% 59% / 0.5);
+}
+
+/* Progress bar animation */
+.progress-bar {
+  position: relative;
+  background: hsl(var(--primary));
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image: repeating-linear-gradient(
+    120deg,
+    rgba(255,255,255,0.13),
+    rgba(255,255,255,0.13) 12px,
+    hsl(var(--primary)) 12px,
+    hsl(var(--primary)) 24px
+  );
+  background-size: 5000%;
+  animation: animatedBackground 600s linear infinite;
+  z-index: 1;
+}
+
+@keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: -100% 0; }
+}
+
+/* Scrollbar styles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
+  background-color: rgb(209 213 219);
+  border-radius: 6px;
+}
+
+.scrollbar-track-gray-100::-webkit-scrollbar-track {
+  background-color: rgb(243 244 246);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Drag and Drop styles */
+[draggable] {
+  user-select: none;
+  -webkit-user-drag: element;
+}
+
+.dragging {
+  opacity: 0.5;
+  cursor: grabbing !important;
+}
+/* Styles for the bonus block */
+.bonus-block {
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Internal padding */
+  transition: border-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.bonus-block:hover {
+  border-color: rgba(0, 0, 0, 0.2); /* Slightly darker border on hover */
+}
+
+.bg-light-blue {
+  background-color: rgb(228, 238, 255); /* Бледно-голубой фон */
+}
+
+.fixed-width {
+  width: 48px; /* Установите желаемую ширину */
+  height: 48px; /* Установите желаемую высоту */
+}
+@media (min-width: 768px) {
+  .modal-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal-content {
+    padding-top: 0rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.text-primary {
+  color: rgb(201, 146, 99) !important;
+}
+
+.text-muted-foreground {
+  color: rgba(201, 146, 99, 0.95) !important;
+}
+
+@keyframes bg-zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bg-zoom-animate {
+  animation: bg-zoom 16s ease-in-out infinite;
+}
+
+@keyframes main-exit {
+  0% { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(0.92) translateY(-60px); }
+}
+@keyframes quiz-enter {
+  0% { opacity: 0; transform: scale(1.08) translateY(60px);}
+  100% { opacity: 1; transform: scale(1) translateY(0);}
+}
+.main-exit {
+  animation: main-exit 0.7s cubic-bezier(.7,.2,.2,1) forwards;
+  z-index: 20;
+}
+.quiz-enter {
+  animation: quiz-enter 0.7s cubic-bezier(.7,.2,.2,1) forwards;
+  z-index: 30;
+}
+
+/* Unbounded — локальные начертания */
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded/Unbounded-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded/Unbounded-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded/Unbounded-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded/Unbounded-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Mazzard — подключаю Regular и ExtraBold для примера, добавь другие если нужно */
+@font-face {
+  font-family: 'Mazzard';
+  src: url('/fonts/Mazzard/MazzardH-Regular.woff2') format('woff2'),
+       url('/fonts/Mazzard/MazzardH-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Mazzard';
+  src: url('/fonts/Mazzard/MazzardH-ExtraBold.woff2') format('woff2'),
+       url('/fonts/Mazzard/MazzardH-ExtraBold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6, .quiz-question-title, .quiz-question {
+    font-family: 'Unbounded', sans-serif;
+  }
+  body, p, .description, .quiz-description, .quiz-subtitle {
+    font-family: 'Mazzard', Arial, sans-serif;
+  }
+}
+
+/* Анимации для загрузочного экрана и входа */
+@keyframes fade-out-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scale-up {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes gradient-slide {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes reveal-text {
+  0% { 
+    clip-path: inset(0 100% 0 0);
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  100% { 
+    clip-path: inset(0 0 0 0); 
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.reveal-text {
+  display: inline-block;
+  animation: reveal-text 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  opacity: 0; /* Начальное состояние */
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+.gradient-text {
+  background: linear-gradient(90deg, hsl(26 100% 50%), hsl(35 91% 64%));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-slide 3s ease infinite;
+}
+
+.scale-in {
+  opacity: 0; /* Начальное состояние */
+  animation: scale-up 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.float-in {
+  opacity: 0; /* Начальное состояние */
+  animation: float-up 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.fade-in-delay {
+  opacity: 0;
+  animation: fade-out-in 0.7s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* Анимации для изображений */
+@keyframes image-reveal {
+  0% { 
+    transform: scale(1.05);
+    filter: blur(5px);
+    opacity: 0;
+  }
+  100% { 
+    transform: scale(1);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.image-reveal {
+  animation: image-reveal 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+/* Трёхмерный эффект наведения */
+.hover-3d {
+  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.hover-3d:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-4deg) scale(1.03);
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy/Gilroy-ExtraBold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy/Gilroy-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy/Gilroy-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geometria';
+  src: url('/fonts/Geometria/Geometria-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geometria';
+  src: url('/fonts/Geometria/Geometria.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 700;
+  }
+  
+  h1 b, h2 b, h3 b, .hero-title b {
+    font-weight: 800;
+    color: rgb(201, 146, 99);
+  }
+  
+  .quiz-question-title, .quiz-question {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 700;
+  }
+  
+  body, p, .description, .quiz-description, .quiz-subtitle {
+    font-family: 'Geometria', sans-serif;
+    font-weight: 400;
+  }
+  
+  strong, b {
+    font-weight: 500;
+  }
+}
+
+p b, p strong {
+  font-weight: 800;
+  color: #8b8b8b;
+}
+
+/* Скрытие полосы прокрутки */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE и Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari и Opera */
+}
+
+/* Плавный скролл для мобильных устройств */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+@layer utilities {
+  .custom-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .custom-scroll {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .animate-finger {
+    animation: finger 4s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-3%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+@keyframes finger {
+  0% {
+    opacity: 0;
+    transform: translate(20px, 20px) rotate(0deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(10px, 10px) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(-15deg);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(-15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(20px, 20px) rotate(0deg);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.slide-enter {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.slide-exit {
+  animation: slideOut 0.5s ease-out forwards;
+}

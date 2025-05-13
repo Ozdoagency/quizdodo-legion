@@ -1,0 +1,119 @@
+@keyframes wiggle {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(-5deg); }
+  50% { transform: rotate(0); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+button .lucide-gift {
+  animation: wiggle 2s ease-in-out infinite !important;
+  display: inline-block !important;
+  transform-origin: center !important;
+  will-change: transform !important;
+}
+
+.animate-pulse-emoji {
+  animation: pulse 2s ease-in-out infinite;
+  display: inline-block;
+  transform-origin: center;
+}
+
+.bounce-emoji {
+  animation: bounce 1s ease-in-out infinite;
+  display: inline-block;
+}
+
+.modal-backdrop {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-overlay {
+  animation: modalFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.modal-content {
+  animation: modalSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Gradient borders for dark mode on mobile */
+@media (max-width: 768px) {
+  .dark .gradient-border {
+    position: relative;
+    background-clip: padding-box !important;
+    border-color: transparent !important;
+  }
+
+  .dark .gradient-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05) 30%,
+      rgba(255, 255, 255, 0.01)
+    );
+  }
+} 
