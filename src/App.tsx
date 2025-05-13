@@ -54,7 +54,6 @@ export default function App() {
   const [isPaused, setIsPaused] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [contentVisible, setContentVisible] = useState(false);
-  const [scrollOpacity, setScrollOpacity] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const galleryRef = useRef<HTMLDivElement>(null);
