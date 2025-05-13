@@ -60,12 +60,30 @@ export default function App() {
   const galleryRef = useRef<HTMLDivElement>(null);
 
   const slides = [
-    "https://optim.tildacdn.one/tild3939-3863-4961-a235-616436323137/-/format/webp/photo.png.webp",
-    "https://optim.tildacdn.one/tild3737-6261-4834-b139-396663343936/-/format/webp/7.png.webp",
-    "https://optim.tildacdn.one/tild3266-3737-4866-b434-326535343363/-/cover/724x514/center/center/-/format/webp/2e6adb8a-eb29-48d3-b.png.webp",
-    "https://optim.tildacdn.one/tild3062-3663-4535-a366-656361623666/-/format/webp/GENERAL.png.webp",
-    "https://optim.tildacdn.one/tild6666-6664-4162-a633-306533333331/-/format/webp/D11_1.png.webp",
-    "https://optim.tildacdn.one/tild6265-6635-4166-a439-303662373534/-/cover/882x1050/center/center/-/format/webp/5317fa3c-f009-4903-8.png.webp"
+    {
+      src: "https://optim.tildacdn.one/tild3939-3863-4961-a235-616436323137/-/format/webp/photo.png.webp",
+      alt: "Bali Real Estate 1"
+    },
+    {
+      src: "https://optim.tildacdn.one/tild3737-6261-4834-b139-396663343936/-/format/webp/7.png.webp",
+      alt: "Bali Real Estate 2"
+    },
+    {
+      src: "https://optim.tildacdn.one/tild3266-3737-4866-b434-326535343363/-/cover/724x514/center/center/-/format/webp/2e6adb8a-eb29-48d3-b.png.webp",
+      alt: "Bali Real Estate 3"
+    },
+    {
+      src: "https://optim.tildacdn.one/tild3062-3663-4535-a366-656361623666/-/format/webp/GENERAL.png.webp",
+      alt: "Bali Real Estate 4"
+    },
+    {
+      src: "https://optim.tildacdn.one/tild6666-6664-4162-a633-306533333331/-/format/webp/D11_1.png.webp",
+      alt: "Bali Real Estate 5"
+    },
+    {
+      src: "https://optim.tildacdn.one/tild6265-6635-4166-a439-303662373534/-/cover/882x1050/center/center/-/format/webp/5317fa3c-f009-4903-8.png.webp",
+      alt: "Bali Real Estate 6"
+    }
   ];
 
   const nextSlide = () => {
@@ -180,10 +198,12 @@ export default function App() {
                             }`}
                           >
                             <img 
-                              src={slide}
-                              alt={`Недвижимость на Бали ${index + 1}`}
+                              src={slide.src}
+                              alt={slide.alt}
                               className="w-full h-full object-cover animate-slow-zoom"
                               style={{ animationDelay: '0.1s' }}
+                              loading={index === 0 ? "eager" : "lazy"}
+                              decoding={index === 0 ? "sync" : "async"}
                             />
                           </div>
                         ))}
@@ -222,7 +242,7 @@ export default function App() {
                   
                   <div className="w-full max-w-[1400px] mx-auto">
                   <h1 
-                      className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground mb-4 md:mb-6 leading-tight font-normal md:whitespace-pre-line"
+                      className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground mb-4 md:mb-6 leading-tight font-normal"
                       dangerouslySetInnerHTML={{__html: fixedTitle.replace(' <b>Вилл на Бали</b>', ' \n<b>Вилл на Бали</b>')}} 
                   />
                   </div>

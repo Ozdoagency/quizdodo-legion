@@ -55,6 +55,7 @@ export const ConsultantAvatar: FC = () => {
                     onError={handleVideoError}
                     controls={false}
                     controlsList="nodownload nofullscreen noremoteplayback"
+                    preload="none"
                   />
                   <button
                     onClick={handlePlayClick}

@@ -63,9 +63,8 @@ export const translations = {
       tip: "Порада",
       guaranteedBonuses: "Гарантовані бонуси",
       bonusList: [
-        "Підбірка топ-5 проектів",
-        "Фото та відео проектів",
-        "Таблиці окупності"
+        "Подборка топ-5 самых доходных проектов с фото и видео",
+        "Таблицы окупаемости"
       ],
       completion: {
         title: "Дякуємо за заявку!",
@@ -163,8 +162,7 @@ export const translations = {
       tip: "Tip",
       guaranteedBonuses: "Guaranteed Bonuses",
       bonusList: [
-        "Selection of top-5 projects",
-        "Photos and videos of projects",
+        "Selection of top-5 most profitable projects with photos and videos",
         "Payback tables"
       ],
       completion: {
@@ -263,9 +261,8 @@ export const translations = {
       tip: "Совет",
       guaranteedBonuses: "Гарантированные бонусы",
       bonusList: [
-        "Подборка топ-5 проектов",
-        "Фото и видео проектов",
-        "Таблицы окупаемости"
+        "Підбірка топ-5 найдохідніших проектів з фото та відео",
+        "Таблиці окупності"
       ],
       completion: {
         title: "Спасибо за заявку!",

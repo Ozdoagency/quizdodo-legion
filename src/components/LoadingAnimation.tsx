@@ -44,11 +44,12 @@ export default function LoadingAnimation() {
   return (
     <div 
       className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-background transition-opacity duration-700 ${isComplete ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      style={{ willChange: 'opacity' }}
     >
       <div className="flex flex-col items-center mb-16">
         {/* Иконка в отдельном контейнере с фиксированной высотой */}
         <div className="h-28 mb-4 flex items-center justify-center">
-          <div className="animate-bounce">
+          <div className="animate-bounce" style={{ willChange: 'transform' }}>
             <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
               <span className="text-4xl">🏞</span>
             </div>
@@ -68,16 +69,17 @@ export default function LoadingAnimation() {
             style={{
               width: `${progress}%`,
               background: 'linear-gradient(90deg, hsl(26 100% 50%), hsl(35 91% 64%))',
-              transition: 'width 0.3s ease-out'
+              transition: 'width 0.3s ease-out',
+              willChange: 'width'
             }}
           />
         </div>
         
         {/* Пульсирующий индикатор */}
         <div className="flex items-center gap-1.5 mt-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" style={{ animationDelay: '0ms' }}></div>
-          <div className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" style={{ animationDelay: '300ms' }}></div>
-          <div className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" style={{ animationDelay: '600ms' }}></div>
+          <div className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" style={{ animationDelay: '0ms', willChange: 'opacity' }}></div>
+          <div className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" style={{ animationDelay: '300ms', willChange: 'opacity' }}></div>
+          <div className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" style={{ animationDelay: '600ms', willChange: 'opacity' }}></div>
         </div>
       </div>
     </div>
