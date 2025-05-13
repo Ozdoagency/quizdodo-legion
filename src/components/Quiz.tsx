@@ -266,7 +266,7 @@ export default function Quiz() {
       className={`quiz-question-anim ${transitionDirection === 'right' ? 'quiz-slide-in-right' : 'quiz-slide-in-left'}`}
     >
       <div className="text-left mb-6">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 rounded-full text-primary text-sm font-medium mb-3 animate-[bounce_2s_ease-in-out_infinite] motion-reduce:animate-none" style={{ transform: 'translateY(0)', animation: 'bounce 2s ease-in-out infinite' }}>
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 rounded-full text-primary text-sm font-medium mb-3 motion-reduce:animate-none" style={{ transform: 'translateY(0)', animation: 'bounce 2s ease-in-out infinite', animationName: 'customBounce' }}>
           {(language === 'uk' && currentStep === questions.length - 1)
             ? '🔥 Останній крок!'
             : (currentStep === questions.length - 1)
@@ -485,10 +485,10 @@ export default function Quiz() {
         </div>
 
         <div className="max-w-2xl mx-auto w-full">
-          <div className="flex items-center gap-3 md:gap-4 mt-6 md:mt-8 justify-between">
+          <div className="flex items-center gap-2 md:gap-4 mt-4 md:mt-8 justify-between px-2 md:px-0">
             <button
               onClick={() => setShowBonuses(true)}
-              className="bg-primary/10 backdrop-blur-2xl border-none rounded-xl px-4 h-10 md:w-auto md:h-12 flex items-center justify-center md:hidden gap-2"
+              className="bg-primary/10 backdrop-blur-2xl border-none rounded-xl px-3 h-10 md:w-auto md:h-12 flex items-center justify-center md:hidden gap-2"
               type="button"
               aria-label={t.guaranteedBonuses}
             >
@@ -496,11 +496,11 @@ export default function Quiz() {
               <span className="text-sm font-medium">{language === 'uk' ? 'Бонуси' : 'Бонусы'}</span>
             </button>
 
-            <div className="flex items-center gap-3 md:gap-4 ml-auto">
+            <div className="flex items-center gap-2 md:gap-4 ml-auto">
               {currentStep > 0 && (
                 <button
                   onClick={handleBack}
-                  className="flex items-center justify-center px-3 py-1.5 md:px-4 md:py-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
+                  className="flex items-center justify-center px-2 py-1 md:px-4 md:py-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
                 >
                   <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 stroke-[2.5]" />
                 </button>
@@ -509,7 +509,7 @@ export default function Quiz() {
               <button
                 onClick={handleNext}
                 disabled={!isButtonActive()}
-                className="bolt-button group relative disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary/50 hover:shadow-primary/70 transition-all duration-300"
+                className="bolt-button group relative disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary/50 hover:shadow-primary/70 transition-all duration-300 px-4 py-2 md:px-8 md:py-3 text-base md:text-lg"
                 type="button"
               >
                 <span className="relative z-10 flex items-center gap-2">

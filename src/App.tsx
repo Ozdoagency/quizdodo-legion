@@ -54,6 +54,9 @@ export default function App() {
   const [isPaused, setIsPaused] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [contentVisible, setContentVisible] = useState(false);
+  const [scrollOpacity, setScrollOpacity] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const galleryRef = useRef<HTMLDivElement>(null);
 
   const slides = [
@@ -103,6 +106,16 @@ export default function App() {
     fetchCountry();
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const { language = 'ru' } = useLanguage();
   const { theme } = useTheme();
   const t = translations[language];
@@ -126,7 +139,12 @@ export default function App() {
         <div className={`absolute inset-0 transition-all duration-700 ${animate ? 'main-exit pointer-events-none' : ''} overflow-y-auto`}> 
           <div className="flex items-center justify-center min-h-screen py-[40px]">
             <div className={`w-full max-w-[1280px] mx-auto px-4 transition-opacity duration-500 ${contentVisible ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="w-full bg-background/50 backdrop-blur-xl fixed top-0 left-0 right-0 z-50 fade-in-delay">
+              <div 
+                className="w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-xl"
+                style={{ 
+                  backgroundColor: `rgba(var(--background), ${0.1 + Math.min(scrollY / 200, 0.4)})`
+                }}
+              >
                 <div className="max-w-[1280px] mx-auto px-4 py-2.5 flex justify-between items-center">
                   <div className="text-center">
                     <span className="text-primary font-normal">{t.header.madeIn} </span>
@@ -258,7 +276,7 @@ export default function App() {
                   <div className="relative md:hidden" ref={galleryRef}>
                     <div className="relative overflow-hidden">
                       <div className="absolute left-0 top-0 w-24 h-full pointer-events-none bg-gradient-to-r from-background via-background/50 to-transparent z-50"></div>
-                      <div className="absolute right-[-24px] top-0 w-24 h-full pointer-events-none bg-gradient-to-l from-background via-background/50 to-transparent z-50"></div>
+                      <div className="absolute right-0 top-0 w-24 h-full pointer-events-none bg-gradient-to-l from-background via-background/50 to-transparent z-50"></div>
                       <div className="flex overflow-x-auto gap-4 scrollbar-hide scroll-smooth px-4">
                         {[
                           { emoji: '💰', title: t.features.price.title, desc: t.features.price.description, delay: '0.2s' },

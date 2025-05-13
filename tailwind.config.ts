@@ -22,7 +22,7 @@ const config: Config = {
         },
         bounce: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-5px)' },
+          '50%': { transform: 'translateY(-12px)' },
         },
       },
     },
