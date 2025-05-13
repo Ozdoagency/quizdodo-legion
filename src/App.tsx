@@ -55,7 +55,6 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [contentVisible, setContentVisible] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
-  const [slideDirection, setSlideDirection] = useState<'next' | 'prev'>('next');
 
   const slides = [
     "https://optim.tildacdn.one/tild3939-3863-4961-a235-616436323137/-/format/webp/photo.png.webp",
@@ -67,12 +66,10 @@ export default function App() {
   ];
 
   const nextSlide = () => {
-    setSlideDirection('next');
     setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setSlideDirection('prev');
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
@@ -287,15 +284,13 @@ export default function App() {
                       { emoji: '📈', title: t.features.income.title, desc: t.features.income.description, delay: '0.3s' },
                       { emoji: '💎', title: t.features.service.title, desc: t.features.service.description, delay: '0.4s' },
                       { emoji: '🏠', title: t.features.turnkey.title, desc: t.features.turnkey.description, delay: '0.5s' }
-                    ].map((feature, index, array) => (
+                    ].map((feature, index) => (
                       <FeatureCard
                         key={index}
                         emoji={feature.emoji}
                         title={feature.title}
                         description={feature.desc}
                         delay={feature.delay}
-                        isLast={index === array.length - 1}
-                        isFirst={index === 0}
                       />
                     ))}
                   </div>
