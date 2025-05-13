@@ -23,6 +23,10 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ['TT Norms', 'Arial', 'sans-serif'],
+      display: ['TT Norms', 'Arial', 'sans-serif'],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",

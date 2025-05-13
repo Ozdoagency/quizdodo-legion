@@ -701,3 +701,22 @@ body > .goog-te-spinner-animation {
   position: absolute !important;
   z-index: -9999 !important;
 }
+
+@font-face {
+  font-family: 'Muller';
+  src: url('/fonts/Muller/MullerBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Muller';
+  src: url('/fonts/Muller/MullerRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body, p, .description, .quiz-description, .quiz-subtitle, h1, h2, h3, h4, h5, h6, .hero-title, .quiz-question-title, .quiz-question {
+  font-family: 'Muller', Arial, sans-serif !important;
+}
