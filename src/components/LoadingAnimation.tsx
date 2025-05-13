@@ -63,14 +63,15 @@ export default function LoadingAnimation() {
         </div>
 
         {/* Прогресс бар с градиентом */}
-        <div className="w-64 h-1.5 bg-gray-200 rounded-full overflow-hidden relative mb-2">
+        <div className="w-64 h-1.5 bg-gray-700 rounded-full overflow-hidden relative mb-2">
           <div 
             className="h-full rounded-full"
             style={{
               width: `${progress}%`,
               background: 'linear-gradient(90deg, hsl(26 100% 50%), hsl(35 91% 64%))',
               transition: 'width 0.3s ease-out',
-              willChange: 'width'
+              willChange: 'width',
+              boxShadow: '0 2px 8px 0 rgba(0,0,0,0.25), 0 0 12px 2px hsl(26,100%,50%,0.7), 0 0 24px 4px hsl(35,91%,64%,0.5)'
             }}
           />
         </div>

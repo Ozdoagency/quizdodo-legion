@@ -14,6 +14,7 @@ import LoadingAnimation from './components/LoadingAnimation';
 import FeatureCard from './components/FeatureCard';
 import './styles/index.css';
 import { useDeviceLanguage } from '@/hooks/useDeviceLanguage';
+import GoogleTranslateWidget from './components/GoogleTranslateWidget';
 
 function getActualDateString(language: 'ru' | 'uk' | 'en') {
   const now = new Date();
@@ -149,6 +150,7 @@ export default function App() {
 
   return (
     <div className={`min-h-screen relative overflow-hidden ${theme === 'dark' ? 'dark' : ''}`}>
+      <GoogleTranslateWidget />
       {isLoading && <LoadingAnimation />}
       
       {!isQuizStarted && (

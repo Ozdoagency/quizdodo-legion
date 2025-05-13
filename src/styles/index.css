@@ -566,6 +566,7 @@ p b, p strong {
 html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  top: 0 !important;
 }
 
 body {
@@ -673,4 +674,30 @@ body.is-scrolled .header-blur {
   50% {
     transform: translateY(-7px);
   }
+}
+
+/* Скрыть селектор и футер Google Translate */
+#google_translate_element,
+.goog-te-banner-frame,
+.goog-te-gadget,
+.goog-te-combo,
+.goog-te-balloon-frame,
+.goog-logo-link,
+.goog-te-gadget span,
+.VIpgJd-ZVi9od-l4eHX-hSRGPd,
+body > .skiptranslate,
+body > .goog-te-banner-frame,
+body > .goog-te-spinner-pos,
+body > .goog-te-spinner-animation {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  z-index: -9999 !important;
 }
