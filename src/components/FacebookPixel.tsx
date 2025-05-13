@@ -13,7 +13,7 @@ export default function FacebookPixel() {
   useEffect(() => {
     // Инициализация fbq
     if (typeof window !== 'undefined') {
-      (function(f: Window, b: Document, e: string, v: string, n: any, t: HTMLScriptElement | null, s: Element | null) {
+      (function(f: Window, b: Document, _e: string, v: string, n: any, t: HTMLScriptElement | null, s: Element | null) {
         if (f.fbq) return;
         n = f.fbq = function() {
           n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
