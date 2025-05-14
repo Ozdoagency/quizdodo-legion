@@ -5,6 +5,7 @@ import { ThemeProvider } from '../context/ThemeContext';
 import { QuizProvider } from '../context/QuizContext';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import FacebookPixel from '../components/FacebookPixel';
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata = {
   title: 'QuizDodo',
@@ -36,6 +37,7 @@ export default function RootLayout({
             <QuizProvider>
               {children}
               <SpeedInsights />
+              <Analytics />
             </QuizProvider>
           </LanguageProvider>
         </ThemeProvider>

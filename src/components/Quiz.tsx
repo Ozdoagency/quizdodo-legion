@@ -26,6 +26,7 @@ import Confetti from 'react-confetti';
 import { sendToTelegram } from '../lib/telegram';
 import { getUtmParams } from '../lib/utm';
 import { getAllCookies } from '../lib/cookies';
+import { track } from '@vercel/analytics';
 
 export default function Quiz() {
   const { currentStep, setCurrentStep, answers, setAnswers } = useQuizContext();
@@ -142,6 +143,9 @@ export default function Quiz() {
   };
 
   const handleNext = async () => {
+    track('Next Question', {
+      fromQuestion: currentStep
+    });
     if (currentStep < questions.length - 1) {
       setTransitionDirection('left');
       setTimeout(() => setCurrentStep(currentStep + 1), 0);
@@ -210,12 +214,20 @@ export default function Quiz() {
           console.error('Make.com fetch error', e);
         }
 
+        track('Quiz Completed', {
+          questionCount: questions.length,
+          completedSteps: currentStep + 1
+        });
+
         setIsQuizExiting(false);
       }, 600);
     }
   };
 
   const handleBack = () => {
+    track('Previous Question', {
+      fromQuestion: currentStep
+    });
     if (currentStep > 0) {
       setTransitionDirection('right');
       setTimeout(() => setCurrentStep(currentStep - 1), 0);
