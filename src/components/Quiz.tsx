@@ -28,6 +28,13 @@ import { getUtmParams } from '../lib/utm';
 import { getAllCookies } from '../lib/cookies';
 import { track } from '@vercel/analytics';
 
+// Для корректной типизации window.gtag
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 export default function Quiz() {
   const { currentStep, setCurrentStep, answers, setAnswers } = useQuizContext();
   const { language } = useLanguage();
@@ -161,6 +168,13 @@ export default function Quiz() {
     track('Next Question', {
       fromQuestion: currentStep
     });
+    // Google Analytics: отправка события о прохождении шага
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'quiz_step', {
+        step: currentStep + 1,
+        total_steps: questions.length
+      });
+    }
     if (currentStep < questions.length - 1) {
       setTransitionDirection('left');
       setTimeout(() => setCurrentStep(currentStep + 1), 0);
@@ -169,6 +183,12 @@ export default function Quiz() {
       setTimeout(async () => {
         setCompleted(true);
         await sendToTelegram({ ...answers, telegramUsername, ...utmRef.current, cookies: getAllCookies() }, language);
+        // Google Analytics: отправка события о завершении квиза
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'quiz_submit', {
+            total_steps: questions.length
+          });
+        }
         
         // Отправляем событие Lead в Facebook Pixel
         if (typeof window !== 'undefined' && window.fbq) {
