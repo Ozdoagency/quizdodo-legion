@@ -73,7 +73,7 @@ export const translations = {
         dontWantToWait: "Не хочете чекати?",
         getSelectionNow: "Отримайте підбірку одразу на WhatsApp, натиснувши на кнопку нижче",
         restart: "Отримати підбірку в WhatsApp",
-        link: "https://api.whatsapp.com/send/?phone=62895001976051&text=Отримати%20каталог%20%2B%20фінансовий%20план"
+        link: "https://api.whatsapp.com/send/?phone=62895001976051&text=Хочу%20отримати%20каталог%20та%20фінансовий%20план"
       },
       phoneInput: {
         info: "Введіть номер телефону, і ми зв'яжемося з вами в обраному месенджері",
@@ -279,7 +279,7 @@ export const translations = {
         dontWantToWait: "Не хотите ждать?",
         getSelectionNow: "Получите подборку сразу на WhatsApp, нажав на кнопку ниже",
         restart: "Получить подборку в WhatsApp",
-        link: "https://api.whatsapp.com/send/?phone=62895001976098&text=Получить%20каталог%20%2B%20финансовый%20план"
+        link: "https://api.whatsapp.com/send/?phone=62895001976051&text=Хочу%20получить%20каталог%20и%20финансовый%20план"
       },
       phoneInput: {
         info: "Введите номер телефона, и мы свяжемся с вами в выбранном мессенджере",

@@ -47,6 +47,12 @@ export default function Quiz() {
   const t = translations[language].quiz;
   const currentQuestion = questions[currentStep];
 
+  // Определяем ссылку для WhatsApp в зависимости от языка
+  let whatsAppLink = t.completion.link;
+  if (language !== 'ru' && language !== 'uk') {
+    whatsAppLink = 'https://api.whatsapp.com/send/?phone=62895001976051&text=Get%20new%20catalog%20for%202025';
+  }
+
   const utmRef = useRef(getUtmParams());
 
   useEffect(() => {
@@ -507,7 +513,7 @@ export default function Quiz() {
             </div>
             
             <a
-              href={t.completion.link || '#'}
+              href={whatsAppLink}
               target="_blank"
               rel="noopener noreferrer"
               className="bolt-button group"
