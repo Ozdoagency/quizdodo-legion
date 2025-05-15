@@ -531,8 +531,6 @@ export default function Quiz() {
     ? t.lastStepTitle
     : `${t.question} ${currentStep + 1} ${t.of} ${questions.length}`;
 
-  const progress = (currentStep / questions.length) * 100;
-
   return (
     <Card className={`w-full p-4 md:p-6 lg:p-8 bg-card text-card-foreground animate-fadeIn relative overflow-hidden quiz-exit${isQuizExiting ? ' quiz-exit-active' : ''} shadow-2xl`}>
       <div className="quiz-gradient-bg" />
