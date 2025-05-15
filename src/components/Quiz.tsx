@@ -148,11 +148,26 @@ export default function Quiz() {
   };
 
   const handlePhoneInput = (text: string) => {
-    const digitsOnly = text.replace(/\D/g, '');
-    setAnswers((prev: Answers) => ({ 
-      ...prev, 
+    let digitsOnly = text.replace(/\D/g, '');
+    const countryDigits = selectedCountry.code.replace('+', '');
+    if (digitsOnly.startsWith(countryDigits)) {
+      digitsOnly = digitsOnly.slice(countryDigits.length);
+    }
+    // Ограничиваем длину по количеству "_" в selectedCountry.format
+    const maxLen = (selectedCountry.format.match(/_/g) || []).length;
+    console.log('Phone Debug:', { 
+      input: text, 
+      digitsOnly, 
+      maxLen, 
+      format: selectedCountry.format,
+      result: digitsOnly.slice(0, maxLen)
+    });
+    digitsOnly = digitsOnly.slice(0, maxLen);
+
+    setAnswers((prev: Answers) => ({
+      ...prev,
       phone: digitsOnly,
-      countryCode: selectedCountry.code 
+      countryCode: selectedCountry.code
     }));
   };
 

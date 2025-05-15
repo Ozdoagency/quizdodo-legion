@@ -98,12 +98,12 @@ export function PhoneInput({
   return (
     <div className="space-y-4 animate-fadeIn">
       {showInfoBlock && (
-        <div className="flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-primary/10 rounded-lg border border-primary/20 gradient-border">
-          <Phone className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-          <p className="text-xs md:text-sm text-primary">
+      <div className="flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-primary/10 rounded-lg border border-primary/20 gradient-border">
+        <Phone className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+        <p className="text-xs md:text-sm text-primary">
             {t.phoneInput.contactInstruction}
-          </p>
-        </div>
+        </p>
+      </div>
       )}
 
       <div className="flex gap-2">
