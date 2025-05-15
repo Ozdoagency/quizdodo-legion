@@ -6,6 +6,7 @@ import { QuizProvider } from '../context/QuizContext';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import FacebookPixel from '../components/FacebookPixel';
 import { Analytics } from "@vercel/analytics/next";
+import GoogleAnalytics from '../components/GoogleAnalytics';
 
 export const metadata = {
   title: 'QuizDodo',
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="ru">
       <body>
         <FacebookPixel />
+        <GoogleAnalytics />
         <div className="fixed inset-0 pointer-events-none">
           <img 
             src="/images/palm.png" 
