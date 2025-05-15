@@ -76,7 +76,9 @@ export const translations = {
         link: "https://api.whatsapp.com/send/?phone=62895001976051&text=Отримати%20каталог%20%2B%20фінансовий%20план"
       },
       phoneInput: {
-        info: "Введіть номер телефону, і ми зв'яжемося з вами в обраному месенджері"
+        info: "Введіть номер телефону, і ми зв'яжемося з вами в обраному месенджері",
+        telegramUsernamePlaceholder: "Ваш @username",
+        contactInstruction: "Введіть номер телефону, і ми зв'яжемося з вами в обраному месенджері"
       },
       fileUpload: {
         select: "Виберіть файли",
@@ -176,7 +178,9 @@ export const translations = {
         link: "https://api.whatsapp.com/send/?phone=62895001976051&text=Get%20catalog%20%2B%20financial%20plan"
       },
       phoneInput: {
-        info: "Enter your phone number and we'll contact you via chosen messenger"
+        info: "Enter your phone number and we'll contact you via chosen messenger",
+        telegramUsernamePlaceholder: "Your @username",
+        contactInstruction: "Enter your phone number, and we will contact you in the selected messenger"
       },
       fileUpload: {
         select: "Select files",
@@ -276,7 +280,9 @@ export const translations = {
         link: "https://api.whatsapp.com/send/?phone=62895001976098&text=Получить%20каталог%20%2B%20финансовый%20план"
       },
       phoneInput: {
-        info: "Введите номер телефона, и мы свяжемся с вами в выбранном мессенджере"
+        info: "Введите номер телефона, и мы свяжемся с вами в выбранном мессенджере",
+        telegramUsernamePlaceholder: "Ваш @username",
+        contactInstruction: "Введите номер телефона, и мы свяжемся с вами в выбранном мессенджере"
       },
       fileUpload: {
         select: "Выберите файлы",

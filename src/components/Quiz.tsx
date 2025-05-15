@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import { ChevronRight, ArrowLeft, CheckCircle, Gift, X, MessageCircle } from 'lucide-react';
+import { ChevronRight, ArrowLeft, CheckCircle, Gift, X, MessageCircle, Phone } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { QuizOption } from './QuizOption';
 import { MessengerSelect } from './MessengerSelect';
@@ -34,6 +34,7 @@ export default function Quiz() {
   const questions = getQuestions(language);
   const [completed, setCompleted] = useState(false);
   const [selectedMessenger, setSelectedMessenger] = useState<string | null>(null);
+  const [telegramUsername, setTelegramUsername] = useState<string>('');
   const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]);
   const [showConfetti, setShowConfetti] = useState(false);
   const [confettiFade, setConfettiFade] = useState(false);
@@ -142,6 +143,14 @@ export default function Quiz() {
     }));
   };
 
+  const handleTelegramUsernameChange = (text: string) => {
+    setTelegramUsername(text);
+    setAnswers((prev: Answers) => ({
+      ...prev,
+      telegramUsername: text,
+    }));
+  };
+
   const handleNext = async () => {
     track('Next Question', {
       fromQuestion: currentStep
@@ -153,7 +162,7 @@ export default function Quiz() {
       setIsQuizExiting(true);
       setTimeout(async () => {
         setCompleted(true);
-        await sendToTelegram({ ...answers, ...utmRef.current, cookies: getAllCookies() }, language);
+        await sendToTelegram({ ...answers, telegramUsername, ...utmRef.current, cookies: getAllCookies() }, language);
         
         // Отправляем событие Lead в Facebook Pixel
         if (typeof window !== 'undefined' && window.fbq) {
@@ -198,6 +207,7 @@ export default function Quiz() {
           country: answers.countryCode || '',
           userCountry: answers.countryCode || '',
           messenger: answers.messenger || '',
+          telegramUsername: answers.telegramUsername || '',
           language,
           page: typeof window !== 'undefined' ? window.location.href : ''
         };
@@ -259,7 +269,11 @@ export default function Quiz() {
       case 'file-upload':
         return (answers[currentStep] as File[] || []).length > 0;
       case 'contact':
-        return answers.messenger && answers.phone && answers.phone.length >= 9;
+        const baseContactValid = answers.messenger && answers.phone && answers.phone.length >= 9;
+        if (selectedMessenger === 'Telegram') {
+          return baseContactValid && !!answers.telegramUsername && answers.telegramUsername.startsWith('@') && answers.telegramUsername.length > 1;
+        }
+        return baseContactValid;
       default:
         return false;
     }
@@ -401,14 +415,47 @@ export default function Quiz() {
               selectedMessenger={selectedMessenger}
               onSelect={handleMessengerChoice}
             />
-            <div className="space-y-2 fade-in-up" style={{ display: selectedMessenger ? 'block' : 'none' }}>
-              <PhoneInput
-                selectedCountry={selectedCountry}
-                phone={answers.phone || ''}
-                onCountrySelect={setSelectedCountry}
-                onPhoneChange={handlePhoneInput}
-              />
-            </div>
+            {selectedMessenger && (
+              <div className="space-y-4 fade-in-up">
+                {selectedMessenger === 'Telegram' ? (
+                  <>
+                    <div className="flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-primary/10 rounded-lg border border-primary/20 gradient-border w-full">
+                      <Phone className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                      <p className="text-xs md:text-sm text-primary">
+                        {t.phoneInput.contactInstruction}
+                      </p>
+                    </div>
+                    <div className="flex flex-col md:flex-row gap-4 md:items-end">
+                      <div className="w-full md:w-2/3">
+                        <PhoneInput
+                          selectedCountry={selectedCountry}
+                          phone={answers.phone || ''}
+                          onCountrySelect={setSelectedCountry}
+                          onPhoneChange={handlePhoneInput}
+                          showInfoBlock={false}
+                        />
+                      </div>
+                      <div className="w-full md:w-1/3">
+                        <input
+                          type="text"
+                          value={answers.telegramUsername || ''}
+                          onChange={(e) => handleTelegramUsernameChange(e.target.value)}
+                          placeholder={t.phoneInput.telegramUsernamePlaceholder}
+                          className="w-full p-3 md:p-4 rounded-lg border transition-all duration-300 bg-white dark:bg-[rgb(21,20,24)] text-sm md:text-base dark:text-gray-200 dark:placeholder-gray-500 gradient-border border-border hover:border-accent focus:border-primary focus:shadow-md outline-none"
+                        />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <PhoneInput
+                    selectedCountry={selectedCountry}
+                    phone={answers.phone || ''}
+                    onCountrySelect={setSelectedCountry}
+                    onPhoneChange={handlePhoneInput}
+                  />
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>

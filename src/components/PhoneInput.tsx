@@ -3,25 +3,41 @@ import { ChevronDown, Phone } from 'lucide-react';
 import { Country } from '../types/quiz';
 import { countries, isCustomCountry, getDefaultCountry } from '../data/countries';
 import { CountryDropdown } from './CountryDropdown';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 type Props = {
   selectedCountry: Country;
   phone: string;
   onCountrySelect: (country: Country) => void;
   onPhoneChange: (phone: string) => void;
+  showInfoBlock?: boolean;
 };
 
 export function PhoneInput({ 
   selectedCountry, 
   phone, 
   onCountrySelect, 
-  onPhoneChange 
+  onPhoneChange, 
+  showInfoBlock = true
 }: Props) {
+  const { language } = useLanguage();
+  const t = translations[language].quiz;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isFocused, setIsFocused] = React.useState(false);
   const [customCode, setCustomCode] = React.useState('');
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [buttonRect, setButtonRect] = React.useState<DOMRect | null>(null);
+
+  // Calculate filled ratio for the bottom border animation
+  const underscoreCount = (selectedCountry.format.match(/_/g) || []).length;
+  const digitsInPhone = phone.length; // phone prop already contains only digits
+  let filledRatio = 0;
+  if (underscoreCount > 0) {
+    filledRatio = Math.min(digitsInPhone / underscoreCount, 1);
+  } else if (digitsInPhone > 0) { // No underscores in format, but phone has digits
+    filledRatio = 1; // Consider it fully filled if any digit is present
+  }
 
   React.useEffect(() => {
     function detectCountry() {
@@ -81,12 +97,14 @@ export function PhoneInput({
 
   return (
     <div className="space-y-4 animate-fadeIn">
-      <div className="flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-primary/10 rounded-lg border border-primary/20 gradient-border">
-        <Phone className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-        <p className="text-xs md:text-sm text-primary">
-          Введите номер телефона, и мы свяжемся с вами в выбранном мессенджере
-        </p>
-      </div>
+      {showInfoBlock && (
+        <div className="flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-primary/10 rounded-lg border border-primary/20 gradient-border">
+          <Phone className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+          <p className="text-xs md:text-sm text-primary">
+            {t.phoneInput.contactInstruction}
+          </p>
+        </div>
+      )}
 
       <div className="flex gap-2">
         <div className="relative">
@@ -149,9 +167,11 @@ export function PhoneInput({
                 : 'border-border hover:border-accent'
             }`}
           />
-          <div className={`absolute bottom-0 left-0 w-full h-1 bg-primary rounded-b-lg transform origin-left transition-transform duration-500 ${
-            phone ? 'scale-x-100' : 'scale-x-0'
-          }`} />
+          {/* Modified div for proportional animation */}
+          <div 
+            className="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-b-lg origin-left transition-transform duration-500 transform"
+            style={{ '--tw-scale-x': filledRatio.toString() } as React.CSSProperties}
+          />
         </div>
       </div>
     </div>

@@ -38,4 +38,5 @@ export type Answers = {
   messenger?: string;
   phone?: string;
   countryCode?: string;
+  telegramUsername?: string;
 };

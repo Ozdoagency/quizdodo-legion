@@ -102,7 +102,7 @@ export default function App() {
       setIsLoading(false);
       setContentVisible(true);
     }, 2000);
-
+    
     return () => clearTimeout(timer);
   }, []);
 
@@ -305,7 +305,7 @@ export default function App() {
                           { emoji: '🏠', title: t.features.turnkey.title, desc: t.features.turnkey.description, delay: '0.5s' }
                         ].map((feature, index) => (
                           <FeatureCard
-                            key={index}
+                            key={index} 
                             emoji={feature.emoji}
                             title={feature.title}
                             description={feature.desc}
@@ -317,20 +317,20 @@ export default function App() {
                   </div>
                   
                   <div className="hidden md:contents">
-                    {[
-                      { emoji: '💰', title: t.features.price.title, desc: t.features.price.description, delay: '0.2s' },
-                      { emoji: '📈', title: t.features.income.title, desc: t.features.income.description, delay: '0.3s' },
+                  {[
+                    { emoji: '💰', title: t.features.price.title, desc: t.features.price.description, delay: '0.2s' },
+                    { emoji: '📈', title: t.features.income.title, desc: t.features.income.description, delay: '0.3s' },
                       { emoji: '💎', title: t.features.service.title, desc: t.features.service.description, delay: '0.4s' },
                       { emoji: '🏠', title: t.features.turnkey.title, desc: t.features.turnkey.description, delay: '0.5s' }
-                    ].map((feature, index) => (
+                  ].map((feature, index) => (
                       <FeatureCard
-                        key={index}
+                      key={index} 
                         emoji={feature.emoji}
                         title={feature.title}
                         description={feature.desc}
                         delay={feature.delay}
                       />
-                    ))}
+                  ))}
                   </div>
                 </div>
                 

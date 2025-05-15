@@ -12,7 +12,11 @@ export function formatAnswers(answers: Record<string, any>, language: string = '
   let msg = `<b>📩 Заявка из QuizDo:</b>\n\n`;
   msg += `<b>Дата:</b> ${formatDate()}\n\n`;
   msg += `<b>Номер телефона:</b> ${(answers.countryCode || '')}${answers.phone || '-'}\n`;
-  msg += `<b>Удобный мессенджер:</b> ${answers.messenger || '-'}\n\n`;
+  msg += `<b>Удобный мессенджер:</b> ${answers.messenger || '-'}\n`;
+  if (answers.telegramUsername) {
+    msg += `<b>Username Telegram:</b> ${answers.telegramUsername}\n`;
+  }
+  msg += `\n`;
   msg += `<b>Ответы:</b>\n`;
 
   questions.forEach((q, idx) => {
