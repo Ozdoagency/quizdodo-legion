@@ -293,9 +293,7 @@ export default function Quiz() {
     >
       <div className="text-left mb-6">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 rounded-full text-primary text-sm font-medium mb-3 motion-reduce:animate-none" style={{ transform: 'translateY(0)', animation: 'bounce 2s ease-in-out infinite', animationName: 'customBounce' }}>
-          {currentStep === questions.length - 1
-            ? t.lastStepTitle
-            : `${t.question} ${currentStep + 1}`}
+          {title}
         </div>
         <h2 className="text-2xl md:text-[1.75rem] font-bold text-foreground mb-2 slide-in-right">
           {currentQuestion.question}
