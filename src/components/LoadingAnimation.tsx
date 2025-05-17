@@ -49,7 +49,10 @@ export default function LoadingAnimation() {
       <div className="flex flex-col items-center mb-16">
         {/* Иконка в отдельном контейнере с фиксированной высотой */}
         <div className="h-28 mb-4 flex items-center justify-center">
-          <div className="animate-bounce" style={{ willChange: 'transform' }}>
+          <div style={{ 
+            animation: 'loaderBounce 1s ease-in-out infinite',
+            willChange: 'transform'
+          }}>
             <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
               <span className="text-4xl">🏞</span>
             </div>
